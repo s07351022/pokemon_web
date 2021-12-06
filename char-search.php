@@ -51,6 +51,14 @@
 			background-color: #D9D9D9;
 			transition: .3s;
 		}
+		.btn-add{
+			background-color: rgba(0,0,0,.5);
+			color: #fff;
+		}
+		.btn-add:hover{
+			background-color: rgba(0,0,0,.6) !important;
+			color: #fff;
+		}
 	</style>
 </head>
 
@@ -102,16 +110,17 @@ echo"								<div class='col mb-3'>";
 echo"									<div class='card char-search-card'>";
 echo"										<div class='card-header'>";
 echo"											<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"											<input type='hidden' name='card_id' value='".$row["Number"]."'>";
 echo"										</div>";
 echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
-echo"										<input type='hidden' name='search_char' value='".$search_char."'>";
 echo"										<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
 echo"										<div class='card-body py-2'>";
 echo"											<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
 echo"										</div>";
 										if($_SESSION['islogin']){
 echo"										<div class='card-footer py-2 pt-0'>";
-echo"											<a class='btn btn-primary'>最愛</a>";
+echo"											<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"											<a class='btn btn-add'>最愛</a>";
 echo"										</div>";
 										}
 echo"									</div>";
@@ -167,12 +176,30 @@ echo"							</form>";
     			window.scrollTo(0,0);   			
     		});
 
-    		$(".log-out-btn").click(function(){
-    			$.get('log-out.php',function(){  
-    				location.reload(); 			
-    				alert("已完成登出");
-    			});
-    		});
+			$(".btn-add").click(function(){
+				//var id = $(this).siblings("#card_id").val();
+				//console.log(id);
+				//var user_id = "<?php echo $_SESSION['userid']; ?>"
+				$.ajax({
+					url: 'add.php',
+					type: 'POST',
+					data: {
+						'card_id' : $(this).siblings("#card_id").val(),//siblings 取德同層級物件
+						'user_id' : "<?php echo $_SESSION['userid']; ?>"
+					},
+					dataType: 'html'
+					}).done(function (data){				
+						if(data == "yes"){
+							alert("已加入最愛清單");
+						}
+						else{							
+							alert("此卡片已存在最愛清單中!!");
+						}
+					}).fail(function(jqXHR, textStatus, errorThrown){
+						alert("有錯誤發生");
+						console.log(jqXHR.reponseText);
+					});	
+			});
     	});		
     </script>
 </body>

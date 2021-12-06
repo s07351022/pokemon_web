@@ -18,6 +18,7 @@ function verify_user($userid, $userpw){
 
             $_SESSION['islogin']=true;
         	$_SESSION['username']=$user['user_nickname'];
+            $_SESSION['userid']=$user['user_id'];
             $result = true;
         }
     }
@@ -55,6 +56,25 @@ function id_repeat($userid){
         if (mysqli_num_rows($query)>=1) { 
             $result = true;
         }
+    }
+    return $result;
+}
+
+
+function add($user_id,$card_id){
+    require_once 'dbtools.inc.php';
+    $userid = $_SESSION['username'];
+    $result = null;
+    $sql = "INSERT INTO `favorite` (`user_ID`, `card_ID`)
+            VALUE ('{$user_id}', '{$card_id}')";
+
+    $link = create_connection();
+    $query = execute_sql($link,"pokemon_card",$sql);
+    if($query){
+        $result = true;
+    }
+    else{
+        $result = false;
     }
     return $result;
 }
