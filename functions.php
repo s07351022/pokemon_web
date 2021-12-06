@@ -60,13 +60,28 @@ function id_repeat($userid){
     return $result;
 }
 
-
 function add($user_id,$card_id){
     require_once 'dbtools.inc.php';
-    $userid = $_SESSION['username'];
     $result = null;
     $sql = "INSERT INTO `favorite` (`user_ID`, `card_ID`)
             VALUE ('{$user_id}', '{$card_id}')";
+
+    $link = create_connection();
+    $query = execute_sql($link,"pokemon_card",$sql);
+    if($query){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+function delete($user_id,$card_id){
+    require_once 'dbtools.inc.php';
+    $result = null;
+    $sql = "DELETE FROM `favorite`
+            WHERE `user_ID` = '{$user_id}' AND `card_ID` = '{$card_id}';";
 
     $link = create_connection();
     $query = execute_sql($link,"pokemon_card",$sql);

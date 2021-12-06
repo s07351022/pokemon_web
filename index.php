@@ -36,7 +36,7 @@ echo"					<div class='nav-link dropdown-toggle px-2' id='navbarDropdown_user' ro
 echo"						<b>會員 : ".$_SESSION['username']."</b>";
 echo"					</div>";
 echo"					<ul class='dropdown-menu my-1' aria-labelledby='navbarDropdown_user'>";
-echo"						<li><a class='dropdown-item' href='#'>最愛清單</a></li>";
+echo"						<li><a class='dropdown-item' href='favorite.php'>最愛清單</a></li>";
 echo"						<li><a class='dropdown-item' href='#'>會員資料</a></li>";
 echo"						<div class='dropdown-divider'></div>";
 echo"						<li><a class='dropdown-item log-out-btn' href='#'>登出</a></li>";

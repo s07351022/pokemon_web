@@ -112,7 +112,7 @@ echo"										<div class='card-header'>";
 echo"											<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
 echo"											<input type='hidden' name='card_id' value='".$row["Number"]."'>";
 echo"										</div>";
-echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"										<input type='hidden' name='search_char' value='".$search_char."'>";
 echo"										<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
 echo"										<div class='card-body py-2'>";
 echo"											<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
@@ -179,7 +179,6 @@ echo"							</form>";
 			$(".btn-add").click(function(){
 				//var id = $(this).siblings("#card_id").val();
 				//console.log(id);
-				//var user_id = "<?php echo $_SESSION['userid']; ?>"
 				$.ajax({
 					url: 'add.php',
 					type: 'POST',

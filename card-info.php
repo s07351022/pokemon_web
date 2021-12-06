@@ -68,8 +68,17 @@ echo"				</li>";
 				<div class="my-2 me-5 mx-1" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
 					<ol class="breadcrumb my-auto px-2">
 						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
-<?php 	echo"			<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果:$search_char</a></li>";?>
-<?php 	echo"			<li class='breadcrumb-item active' aria-current='page'>$id</li>";?>
+<?php
+					$url = $_SERVER["HTTP_REFERER"];
+					if($url=="http://10.54.1.15/pokemon_web/favorite.php"){
+echo"					<li class='breadcrumb-item'><a href='favorite.php'>最愛清單</a></li>";
+echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";						
+					}
+					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
+echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果:$search_char</a></li>";
+echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
+					}
+?>
 					</ol>
 				</div>			
 			</div>
@@ -77,17 +86,18 @@ echo"				</li>";
 	</nav>
 	<div class="container">
 		<div class="row">			
-			<div class="col-12 mt-4">
+			<div class="col-12 mt-4 mb-4">
 				<div class="dialog card-info">
-					<div class="container py-4">
+					<div class="container-fluid">
+						<h1 class="mx-0 my-0 py-3 dialog_title">卡片資訊</h1>
 						<div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
-							<div class="col">
+							<div class="col mb-4">
 								<div class="container-fluid px-0">
 									<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
-										<div class="col">
+										<div class="col mb-4">
 <?php 	echo"								<img id='input-img' class='shadow w-100' src='http://140.128.102.212/p-img/".$card_img.".png' alt=''>";?>
 										</div>
-										<div class="col">
+										<div class="col mb-4">
 											<table class="table">
 												<tr>
 													<td>名稱 :</td>
@@ -125,7 +135,7 @@ echo"				</li>";
 	$result = execute_sql($link,"pokemon_card",$sql);
 	$row = mysqli_fetch_array($result);
 ?>
-							<div class="col align-center">
+							<div class="col align-center mb-4">
 								<div id="highchart" class="h-100 my-auto"></div>
 							</div>
 						</div>						
