@@ -13,7 +13,7 @@
     $link = create_connection();
     $result = execute_sql($link,"pokemon_card",$sql);
     $row = mysqli_fetch_array($result);
-    $ave=round((($row["s_0"]+$row["r_0"]+$row["p_0"])/3.0), 2);
+    $ave=round((($row["s_0"]+$row["r_0"]+$row["p_0"])/3.0), 0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,29 @@
 	<link rel="stylesheet" href="index1.css">
 
 	<style>
-		#input-img{
+		.btn-shopee{
+			background-color: #FF6725;
+			color: #fff;
+		}
+		.btn-shopee:hover{
+			background-color: #FF540A;
+			color: #fff;
+		}
+		.btn-ruten{
+			background-color: #FFB53A;
+			color: #000;
+		}
+		.btn-ruten:hover{
+			background-color: #FF9F00;
+			color: #000;
+		}
+		.btn-pai{
+			background-color: #616161;
+			color: #fff;
+		}
+		.btn-pai:hover{
+			background-color: #505050;
+			color: #fff;
 		}
 	</style>
 </head>
@@ -91,63 +113,76 @@ echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					<div class="container-fluid">
 						<h1 class="mx-0 my-0 py-3 dialog_title">卡片資訊</h1>
 						<div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
-							<div class="col mb-4">
-								<div class="container-fluid px-0">
+							<div class="col mb-2">
+								<div class="container-fluid px-2">
 									<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
-										<div class="col mb-4">
+										<div class="col mb-2">
 <?php 	echo"								<img id='input-img' class='shadow w-100' src='http://140.128.102.212/p-img/".$card_img.".png' alt=''>";?>
 										</div>
-										<div class="col mb-4">
-											<table class="table">
+										<div class="col">
+											<table class="table mb-2 mb-md-4 mb-lg-1 mb-xl-3 mb-xxl-4">
 												<tr>
-													<td>名稱 :</td>
-													<td>名稱 :</td>
+													<td class='p-2 py-lg-1 py-xl-2'>編號 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Number"]."</td>";?>
 												</tr>
 												<tr>
-													<td>名稱 :</td>
-													<td>名稱 :</td>
+													<td class='p-2 py-lg-1 py-xl-2'>名稱 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Name"]."</td>";?>
 												</tr>
 												<tr>
-													<td>名稱 :</td>
-													<td>名稱 :</td>
+													<td class='p-2 py-lg-1 py-xl-2'>屬性 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Attribute"]."</td>";?>
 												</tr>
 												<tr>
-													<td>名稱 :</td>
-													<td>名稱 :</td>
+													<td class='p-2 py-lg-1 py-xl-2'>稀有度 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Rarity"]."</td>";?>
 												</tr>
 												<tr>
-													<td>名稱 :</td>
-													<td>名稱 :</td>
+													<td class='p-2 py-lg-1 py-xl-2'>平均價格 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$ave." $</td>";?>
 												</tr>
 											</table>
+											<div class="row row-cols-1">
+												<div class="col mx-auto">
+<?php 	echo'										<a class="btn btn-shopee w-100 mb-2 mb-sm-2 mb-md-4 mb-lg-1 mb-xl-2 mb-xxl-4 p-2 py-lg-1 py-xl-1 py-xxl-2" href="https://shopee.tw/search?keyword='.$row["Number"].'" target="_blank">蝦皮</a>';?>													
+												</div>	
+												<div class="col">
+<?php	echo'										<a class="btn btn-ruten w-100 mb-2 mb-sm-2 mb-md-4 mb-lg-1 mb-xl-2 mb-xxl-4 p-2 py-lg-1 py-xl-1 py-xxl-2" href="https://www.ruten.com.tw/find/?q='.$row["Number"].'" target="_blank">露天</a>';?>														
+												</div>
+
+
+												<div class="col">
+<?php	echo'										<a class="btn btn-pai w-100 mb-2 mb-sm-2 mb-md-4 mb-lg-1 mb-xl-2 mb-xxl-4 p-2 py-lg-1 py-xl-1 py-xxl-2" href="https://paipaizhan.com.tw/?s='.$row["Number"].'" target="_blank">牌牌戰</a>';?>														
+												</div>
+											</div>											
 										</div>
 									</div>
 								</div>
 							</div>
 <?php 								
 
-	$sql = "SELECT 	*										
-			FROM	shopee,ruten,pai
-			WHERE	s_ID = '$id' AND r_ID = '$id' AND p_ID = '$id';";
+$sql = "SELECT 	*										
+FROM	shopee,ruten,pai
+WHERE	s_ID = '$id' AND r_ID = '$id' AND p_ID = '$id';";
 
-	require_once("dbtools.inc.php");
-	$link = create_connection();
-	$result = execute_sql($link,"pokemon_card",$sql);
-	$row = mysqli_fetch_array($result);
+require_once("dbtools.inc.php");
+$link = create_connection();
+$result = execute_sql($link,"pokemon_card",$sql);
+$row = mysqli_fetch_array($result);
 ?>
-							<div class="col align-center mb-4">
-								<div id="highchart" class="h-100 my-auto"></div>
-							</div>
-						</div>						
-					</div>
+						<div class="col align-center mb-2 px-0">
+							<div id="highchart" class="h-100 my-auto"></div>
+						</div>
+					</div>						
 				</div>
 			</div>
 		</div>
 	</div>
-    <script>
-    	$(function(){
-    		$("#scroll_1").click(function(){
-    			window.scrollTo(0,0);
+</div>
+<script>
+	$(function(){
+		$("#scroll_1").click(function(){
+			window.scrollTo(0,0);
     		});
     		$("#scroll_2").click(function(){
     			const window_height = $(document).height();
@@ -169,18 +204,6 @@ echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
     			}
     			else if(window_width < 576){
     				window.scrollTo(0,2550);
-    			}
-    		});
-    		$(".news_btn").click(function(){//已經按news_btn
-    			$(this).data("clicked", true);
-    		});
-    		$(".news_card").click(function(){
-    			if(!$(this).find(".news_btn").data("clicked")){//按news_btn以外的區域
-    				$(this).find(".news_btn")[0].click();//也會使news_btn.data => true
-    				//Note that this calls the DOM click method instead of the jQuery click method (which is very incomplete and completely ignores href).
-    			}
-    			else{
-    				$(this).find(".news_btn").data("clicked", false);//重設將news_btn.data => false
     			}
     		});
 
