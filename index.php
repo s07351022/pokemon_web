@@ -22,16 +22,16 @@
 	<nav class="navbar navbar-expand-xl navbar-light sticky-top shadow">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.php">
-				<img src="img/logo_v2.png" alt="" height="75px">
+				<img class="logo ms-1 ms-sm-4" src="img/logo_v2.png" alt="" height="75px">
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler me-1 me-sm-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<ul class="navbar-nav me-xl-auto mx-1 mx-sm-4 ms-xl-2 mb-xl-0">
 <?php
 				if($_SESSION['islogin']){
-echo"				<li class='nav-item dropdown mx-1'>";
+echo"				<li class='nav-item dropdown mx-xl-1 mb-1 mb-xl-0'>";
 echo"					<div class='nav-link dropdown-toggle px-2' id='navbarDropdown_user' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
 echo"						<b>會員 : ".$_SESSION['username']."</b>";
 echo"					</div>";
@@ -44,24 +44,24 @@ echo"					</ul>";
 echo"				</li>";
 				}
 				else{
-echo"				<li class='nav-item mx-1'>";	
+echo"				<li class='nav-item mx-xl-1 mb-1 mb-xl-0'>";	
 echo"					<a class='nav-link px-2 login-link' href='login.php'><b>登入</b></a>";	
 echo"				</li>";					
 				}
 ?>							
-					<li class="nav-item mx-1">
+					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
 						<a class="nav-link px-2" href="#"><b>關於我們</b></a>
 					</li>
-					<li class="nav-item mx-1">
+					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
 						<div class="nav-link px-2" id="scroll_1"><b>最新消息</b></div>
 					</li>
-					<li class="nav-item mx-1">
+					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
 						<div class="nav-link px-2" id="scroll_2"><b>快速查詢</b></div>
 					</li>
-					<li class="nav-item mx-1">
+					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
 						<div class="nav-link px-2" id="scroll_3"><b>價格排行</b></div>
 					</li>
-					<li class="nav-item dropdown mx-1">
+					<li class="nav-item dropdown mx-xl-1 mb-1 mb-xl-0">
 						<a class="nav-link dropdown-toggle px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<b>商場</b>
 						</a>
@@ -71,9 +71,8 @@ echo"				</li>";
 							<li><a class="dropdown-item" href="https://paipaizhan.com.tw/cardgame-ptcg/" target="_blank">牌牌戰</a></li>
 						</ul>
 					</li>
-
 				</ul>
-				<form class="d-flex" id="char-search-form" action="char-search.php" method="post">
+				<form class="d-flex me-xl-4 mx-1 mx-sm-4" id="char-search-form" action="char-search.php" method="post">
 					<input class="form-control me-2" id="char-search-bar" type="search" placeholder="名稱/屬性/稀有度..." aria-label="Search" name="search_char" required>
 					<button class="btn btn-outline-dark" id="char-search-btn" type="submit">search</button>
 				</form>				
@@ -187,14 +186,21 @@ echo"				</li>";
 						<form action="quick-search.php" method="POST" >
 							<div class="row">
 								<div class="col py-2 mb-2 check_area rounded">
-									<input type="checkbox" class="btn-check" id="all" autocomplete="off">
-									<label class="btn px-2 px-sm-3 px-md-4 px-lg-5 normal_btn check_box" for="all">全部</label>
-									<input type="reset" class="btn px-2 px-sm-3 px-md-4 px-lg-5 ms-2 ms-sm-3 ms-mb-4 ms-lg-5 float-end normal_btn check_box" autocomplete="off">
-									<input type="submit" class="btn px-2 px-sm-3 px-md-4 px-lg-5 float-end normal_btn check_box" autocomplete="off">
+									<h3 class="mx-0 my-0 pb-2">操作</h3>
+									<div class="container">
+										<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
+											<div class="col">
+												<input type="submit" class="btn normal_btn check_box w-100" autocomplete="off">
+											</div>
+											<div class="col">
+												<input type="reset" class="btn normal_btn check_box w-100" autocomplete="off">
+											</div>									
+										</div>
+									</div>											
 								</div>
 							</div>
 							<div class="row">
-								<div class="col py-2 mb-2 check_area rounded">
+								<div class="col py-2 mb-2 check_area rounded">	
 									<h3 class="mx-0 my-0 pb-2">系列</h3>
 									<div class="container">
 										<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
@@ -272,7 +278,7 @@ echo"				</li>";
 										<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
 											<div class="col">
 												<input type="checkbox" class="btn-check" id="rare_none" autocomplete="off">
-												<label class="btn normal_btn check_box w-100 mb-2" for="rare_none">無</label>
+												<label class="btn normal_btn check_box w-100 mb-2" for="rare_none">普卡</label>
 											</div>
 											<div class="col">
 												<input type="checkbox" class="btn-check" id="rare_ar" autocomplete="off">

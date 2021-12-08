@@ -52,29 +52,29 @@
 	<nav class="navbar navbar-expand-xl navbar-light sticky-top shadow">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.php">
-				<img src="img/logo_v2.png" alt="" height="75px">
+				<img class="logo ms-1 ms-sm-4" src="img/logo_v2.png" alt="" height="75px">
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler me-1 me-sm-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<ul class="navbar-nav me-xl-auto mx-1 mx-sm-4 ms-xl-2 mb-xl-0">
 <?php
 				if($_SESSION['islogin']){
-echo"				<li class='nav-item mx-1'>";
+echo"				<li class='nav-item mx-xl-1 mb-1 mb-xl-0'>";
 echo"					<div class='nav-link px-2'>";
 echo"						<b>會員 : ".$_SESSION['username']."</b>";
 echo"					</div>";
 echo"				</li>";
 				}
 				else{
-echo"				<li class='nav-item mx-1'>";	
+echo"				<li class='nav-item mx-xl-1 mb-1 mb-xl-0'>";	
 echo"					<a class='nav-link px-2' href='login.php'><b>登入</b></a>";	
 echo"				</li>";					
 				}
 ?>						
 				</ul>
-				<div class="my-2 me-5 mx-1" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
+				<div class="me-3  mx-1 mx-sm-4 ms-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
 					<ol class="breadcrumb my-auto px-2">
 						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
 						<li class='breadcrumb-item active' aria-current='page'>最愛清單</li>

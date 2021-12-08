@@ -65,29 +65,29 @@
 	<nav class="navbar navbar-expand-xl navbar-light sticky-top shadow">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.php">
-				<img src="img/logo_v2.png" alt="" height="75px">
+				<img class="logo ms-1 ms-sm-4" src="img/logo_v2.png" alt="" height="75px">
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler me-1 me-sm-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<ul class="navbar-nav me-xl-auto mx-1 mx-sm-4 ms-xl-2 mb-xl-0">
 <?php
 				if($_SESSION['islogin']){
-echo"				<li class='nav-item mx-1'>";
+echo"				<li class='nav-item mx-xl-1 mb-1 mb-xl-0'>";
 echo"					<div class='nav-link px-2'>";
 echo"						<b>會員 : ".$_SESSION['username']."</b>";
 echo"					</div>";
 echo"				</li>";
 				}
 				else{
-echo"				<li class='nav-item mx-1'>";	
+echo"				<li class='nav-item mx-xl-1 mb-1 mb-xl-0'>";	
 echo"					<a class='nav-link px-2' href='login.php'><b>登入</b></a>";	
 echo"				</li>";					
 				}
 ?>																					
 				</ul>
-				<div class="my-2 me-5 mx-1" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
+				<div class="me-3  mx-1 mx-sm-4 ms-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
 					<ol class="breadcrumb my-auto px-2">
 						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
 <?php
@@ -98,6 +98,10 @@ echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
 echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果:$search_char</a></li>";
+echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
+					}
+					else if($url=="http://10.54.1.15/pokemon_web/index.php"){
+echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>價格排行</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
 ?>
@@ -122,12 +126,12 @@ echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 										<div class="col">
 											<table class="table mb-2 mb-md-4 mb-lg-1 mb-xl-3 mb-xxl-4">
 												<tr>
-													<td class='p-2 py-lg-1 py-xl-2'>編號 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Number"]."</td>";?>
-												</tr>
-												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>名稱 :</td>
 <?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Name"]."</td>";?>
+												</tr>
+												<tr>
+													<td class='p-2 py-lg-1 py-xl-2'>種類 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Class"]."</td>";?>
 												</tr>
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>屬性 :</td>
