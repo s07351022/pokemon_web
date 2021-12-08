@@ -53,7 +53,18 @@
 				</ul>
 				<div class="me-3  mx-1 mx-sm-4 ms-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
 					<ol class="breadcrumb my-auto px-2">
-						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
+<?php
+					$url = $_SERVER["HTTP_REFERER"];
+					if($url=="http://10.54.1.15/pokemon_web/index.php"){
+echo"					<li class='breadcrumb-item'><a href='index.php'>主頁</a></li>";						
+					}
+					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
+echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果</a></li>";
+					}
+					else if($url=="http://10.54.1.15/pokemon_web/card-info.php"){
+echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>卡片資訊</a></li>";
+					}
+?>						
 						<li class='breadcrumb-item active' aria-current='page'>登入</li>
 					</ol>
 				</div>
