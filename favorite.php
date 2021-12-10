@@ -1,10 +1,13 @@
 <?php
 	session_start();
 	header("Cache-Control:private");
-	
-    $sql = "SELECT 	*
+
+	$user = $_SESSION['userid'];
+
+    $sql = "SELECT	*
             FROM	favorite,card_info
-            WHERE	user_ID = user_id AND card_ID = Number;";
+            WHERE	Number = card_ID AND user_ID = '$user'";
+
 
     require_once("dbtools.inc.php");
     $link = create_connection();
