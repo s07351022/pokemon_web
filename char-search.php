@@ -72,7 +72,7 @@ echo"				</li>";
 				}
 ?>						
 				</ul>
-				<div class="mx-1 mx-sm-4 ms-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
+				<div class="mx-1 mx-sm-4 mx-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
 					<ol class="breadcrumb my-auto px-2">
 						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
 <?php 	echo"			<li class='breadcrumb-item active' aria-current='page'>搜尋結果</li>";?>
