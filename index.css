@@ -88,7 +88,7 @@ mark{
 	width: 80% !important;
 	margin: auto;
 }
-.leader_card img{
+.leader_card .image{
 	width: 60% !important;
 	margin: auto;
 }
@@ -102,7 +102,10 @@ mark{
 	background-color: #D9D9D9;
 	transition: .3s;
 }
-.card:hover{
+.news_card:hover{
+	cursor: pointer;
+}
+.news_card img:hover{
 	cursor: pointer;
 }
 .card img{

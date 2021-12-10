@@ -13,6 +13,7 @@
     $link = create_connection();
     $result = execute_sql($link,"pokemon_card",$sql);
     $row = mysqli_fetch_array($result);
+    $name = $row["Name"];
     $ave=round((($row["s_0"]+$row["r_0"]+$row["p_0"])/3.0), 0);
 ?>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 
 	<title>Pokemon卡牌查價系統---主頁</title>
 
-	<link rel="stylesheet" href="index1.css">
+	<link rel="stylesheet" href="index.css">
 
 	<style>
 		.btn-shopee{
@@ -97,7 +98,7 @@ echo"					<li class='breadcrumb-item'><a href='favorite.php'>最愛清單</a></l
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";						
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
-echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果:$search_char</a></li>";
+echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/index.php"){
@@ -126,8 +127,8 @@ echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 										<div class="col">
 											<table class="table mb-2 mb-md-4 mb-lg-1 mb-xl-3 mb-xxl-4">
 												<tr>
-													<td class='p-2 py-lg-1 py-xl-2'>名稱 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Name"]."</td>";?>
+													<td class='p-2 py-lg-1 py-xl-2'>編號 :</td>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Number"]."</td>";?>
 												</tr>
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>種類 :</td>
@@ -283,7 +284,7 @@ $row = mysqli_fetch_array($result);
 				},
 
 				title: {
-					text: '<?php echo $id;?> 價格變動紀錄',
+					text: '<?php echo $name;?>  價格變動紀錄',
 					style: {
 						fontWeight: 'bold'
 					}

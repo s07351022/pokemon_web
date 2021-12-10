@@ -23,7 +23,7 @@
 
 	<title>Pokemon卡牌查價系統---搜尋結果</title>
 
-	<link rel="stylesheet" href="index1.css">
+	<link rel="stylesheet" href="index.css">
 
 	<style>
 		.card input[type="image"]{

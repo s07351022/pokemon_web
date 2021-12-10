@@ -15,8 +15,13 @@
 
 	<title>Pokemon卡牌查價系統---主頁</title>
 
-	<link rel="stylesheet" href="index1.css">
+	<link rel="stylesheet" href="index.css">
 
+	<style>
+		td,tr{
+			border: none !important;
+		}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-xl navbar-light sticky-top shadow">
@@ -183,7 +188,7 @@ echo"				</li>";
 					<div class="container-fluid">
 						<h1 class="mx-0 my-0 py-3 dialog_title">快速查詢</h1>
 						<h3 class="mx-0 my-0 pb-2">透過選取<mark>系列</mark>/<mark>屬性</mark>/<mark>稀有度</mark>可以更快找到符合條件的卡片!!</h3>
-						<form action="quick-search.php" method="POST" >
+						<form action="char-search.php" method="POST" >
 							<div class="row">
 								<div class="col py-2 mb-2 check_area rounded">
 									<h3 class="mx-0 my-0 pb-2">操作</h3>
@@ -205,15 +210,15 @@ echo"				</li>";
 									<div class="container">
 										<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="s4a" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="s4a" name="srch_series[]" value="s4a">
 												<label class="btn normal_btn check_box w-100 mb-2" for="s4a">閃色明星</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="s5i" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="s5i" name="srch_series[]" value="s5i">
 												<label class="btn normal_btn check_box w-100 mb-2" for="s5i">一擊大師</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="s5r" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="s5r" name="srch_series[]" value="s5r">
 												<label class="btn normal_btn check_box w-100 mb-2" for="s5r">連擊大師</label>
 											</div>
 										</div>
@@ -223,51 +228,51 @@ echo"				</li>";
 									<div class="container">
 										<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_normal" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_normal" autocomplete="off" name="srch_att[]" value="一般">
 												<label class="btn normal_btn check_box w-100 mb-2" for="att_normal">一般</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_none" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_none" autocomplete="off" name="srch_att[]" value="無">
 												<label class="btn check_box w-100 mb-2 att_none" for="att_none">無</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_dendro" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_dendro" autocomplete="off" name="srch_att[]" value="草">
 												<label class="btn check_box w-100 mb-2 att_dendro" for="att_dendro">草</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_hydro" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_hydro" autocomplete="off" name="srch_att[]" value="水">
 												<label class="btn check_box w-100 mb-2 att_hydro" for="att_hydro">水</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_pyro" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_pyro" autocomplete="off" name="srch_att[]" value="火">
 												<label class="btn check_box w-100 mb-2 att_pyro" for="att_pyro">火</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_metal" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_metal" autocomplete="off" name="srch_att[]" value="鋼">
 												<label class="btn check_box w-100 mb-2 att_metal" for="att_metal">鋼</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_super" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_super" autocomplete="off" name="srch_att[]" value="超能力">
 												<label class="btn check_box w-100 mb-2 att_super" for="att_super">超能力</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_evil" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_evil" autocomplete="off" name="srch_att[]" value="惡">
 												<label class="btn check_box w-100 mb-2 att_evil" for="att_evil">惡</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_battle" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_battle" autocomplete="off" name="srch_att[]" value="格鬥">
 												<label class="btn check_box w-100 mb-2 att_battle" for="att_battle">格鬥</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_dragon" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_dragon" autocomplete="off" name="srch_att[]" value="龍">
 												<label class="btn check_box w-100 mb-2 att_dragon" for="att_dragon">龍</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_fairy" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_fairy" autocomplete="off" name="srch_att[]" value="妖精">
 												<label class="btn check_box w-100 mb-2 att_fairy" for="att_fairy">妖精</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="att_electro" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="att_electro" autocomplete="off" name="srch_att[]" value="電">
 												<label class="btn check_box w-100 mb-2 att_electro" for="att_electro">電</label>
 											</div>
 										</div>
@@ -277,19 +282,19 @@ echo"				</li>";
 									<div class="container">
 										<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="rare_none" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="rare_none" autocomplete="off" name="srch_rare[]" value="普卡">
 												<label class="btn normal_btn check_box w-100 mb-2" for="rare_none">普卡</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="rare_ar" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="rare_ar" autocomplete="off" name="srch_rare[]" value="AR">
 												<label class="btn normal_btn check_box w-100 mb-2" for="rare_ar">AR</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="rare_rr" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="rare_rr" autocomplete="off" name="srch_rare[]" value="RR">
 												<label class="btn normal_btn check_box w-100 mb-2" for="rare_rr">RR</label>
 											</div>
 											<div class="col">
-												<input type="checkbox" class="btn-check" id="rare_rrr" autocomplete="off">
+												<input type="checkbox" class="btn-check" id="rare_rrr" autocomplete="off" name="srch_rare[]" value="RRR">
 												<label class="btn normal_btn check_box w-100 mb-2" for="rare_rrr">RRR</label>
 											</div>
 										</div>
@@ -303,9 +308,9 @@ echo"				</li>";
 			<div class="col-12 mb-4">
 				<div class="dialog leaderboard">
 					<?php
-						$sql = "SELECT 		Number,Name,Picture,s_0
-								FROM		card_info,shopee		
-								WHERE 		Number=s_ID				
+						$sql = "SELECT 		Number,Name,Picture,s_0,r_0,p_0
+								FROM		card_info,shopee,ruten,pai		
+								WHERE 		Number=s_ID	AND Number=r_ID AND	Number=p_ID		
 									
 								ORDER BY 	s_0 DESC;";
 						require_once("dbtools.inc.php");
@@ -316,153 +321,99 @@ echo"				</li>";
 							if($flag==3){
 								break;
 							}
-							$number[]	=$row["Number"];
-							$name[]		=$row["Name"];
-							$picture[]	=$row["Picture"];
-							$price[]	=$row["s_0"];
+							$number[$flag]	=$row["Number"];
+							$name[$flag]	=$row["Name"];
+							$picture[$flag]	=$row["Picture"];
+
+							$ave[$flag]		=round((($row["s_0"]+$row["r_0"]+$row["p_0"])/3.0), 0);
+
 							$flag++;
 						}
 					?>
 					<div class="container-fluid">
 						<h1 class="mx-0 my-0 py-3 dialog_title">價格排行</h1>
-						<div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
+						<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
 							<div class="col mb-4">
-								<div class="card shadow h-100 leader_card" data-bs-toggle="modal" data-bs-target="#modal_1st">
-									<div class="card-header rounded-top leader_1st">
-										<h3 class="mx-0 my-0">第一名</h3>
-									</div>
-<?php	echo"								<img src='http://140.128.102.212/p-img/".$picture[0].".png' class='my-3 shadow' alt='...'>";?>
-									<div class="card-body rounded-bottom leader_1st">
-										<div class="card-text">
-											<div class="container px-0">											
-												<div class="row row-cols-2">
-													<div class="col">
-														<h4 class="mx-0 my-0">名稱 :</h4>
-													</div>
-													<div class="col">
-<?php	echo"											<h4 class='mx-0 my-0 float-end'>$name[0]</h4>";?>
-													</div>
-												</div>
-												<div class="row row-cols-2">
-													<div class="col">
-														<h4 class="mx-0 my-0">售價 :</h4>
-													</div>
-													<div class="col">
-<?php	echo"											<h4 class='mx-0 my-0 float-end'>$price[0]$</h4>";?>
-													</div>
-												</div>
-											</div>											
+								<form action="card-info.php" method="POST">
+									<div class="card shadow h-100 leader_card">
+										<div class="card-header rounded-top leader_1st">
+											<h3 class="mx-0 my-0">第一名</h3>
 										</div>
-										<div class="modal fade" id="modal_1st" tabindex="-1" aria-labelledby="modal_label_1st" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="modal_label_1st">卡牌資訊</h5>
-														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-														...
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-													</div>
-												</div>
-											</div>
+	<?php	echo"							<input type='image' class='image shadow my-4' src='http://140.128.102.212/p-img/".$picture[0].".png' alt='...'>";?>
+	<?php	echo"							<input type='hidden' name='card_id' value='".$number[0]."'>";?>			
+										<div class="card-body rounded-bottom leader_1st">
+											<div class="card-text">
+												<div class="container px-0">											
+													<table class="table mb-0">
+														<tr>
+															<td class='p-0'><h4 class='mb-0'>名稱 :</h4></td>
+	<?php 	echo"											<td class='p-0'><h4 class='mb-0 float-end'>$name[0]</h4></td>";?>
+														</tr>
+														<tr>
+															<td class='p-0'><h4 class='mb-0'>價格 :</h4></td>
+	<?php 	echo"											<td class='p-0'><h4 class='mb-0 float-end'>$ave[0] $</h4></td>";?>
+														</tr>
+													</table>
+												</div>											
+											</div>										
 										</div>
 									</div>
-								</div>
+								</form>								
 							</div>
 							<div class="col mb-4">
-								<div class="card shadow h-100 leader_card" data-bs-toggle="modal" data-bs-target="#modal_2nd">
-									<div class="card-header rounded-top leader_2nd">
-										<h3 class="mx-0 my-0">第二名</h3>
-									</div>
-<?php	echo"							<img src='http://140.128.102.212/p-img/".$picture[1].".png' class='my-3 shadow' alt='...'>";?>
-									<div class="card-body rounded-bottom leader_2nd">
-										<div class="card-text">
-											<div class="container px-0">												
-												<div class="row row-cols-2">
-													<div class="col">
-														<h4 class="mx-0 my-0">名稱 :</h4>
-													</div>
-													<div class="col">
-<?php	echo"											<h4 class='mx-0 my-0 float-end'>$name[1]</h4>";?>
-													</div>
-												</div>
-												<div class="row row-cols-2">
-													<div class="col">
-														<h4 class="mx-0 my-0">售價 :</h4>
-													</div>
-													<div class="col">
-<?php	echo"											<h4 class='mx-0 my-0 float-end'>$price[1]$</h4>";?>
-													</div>
-												</div>
-											</div>		
+								<form action="card-info.php" method="POST">
+									<div class="card shadow h-100 leader_card">
+										<div class="card-header rounded-top leader_2nd">
+											<h3 class="mx-0 my-0">第二名</h3>
 										</div>
-										<div class="modal fade" id="modal_2nd" tabindex="-1" aria-labelledby="modal_label_2nd" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="modal_label_2nd">卡牌資訊2</h5>
-														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-														...
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-													</div>
-												</div>
-											</div>
+	<?php	echo"							<input type='image' class='image shadow my-4' src='http://140.128.102.212/p-img/".$picture[1].".png' alt='...'>";?>
+	<?php	echo"							<input type='hidden' name='card_id' value='".$number[1]."'>";?>		
+										<div class="card-body rounded-bottom leader_2nd">
+											<div class="card-text">
+												<div class="container px-0">
+													<table class="table mb-0">
+														<tr>
+															<td class='p-0'><h4 class='mb-0'>名稱 :</h4></td>
+	<?php 	echo"											<td class='p-0'><h4 class='mb-0 float-end'>$name[1]</h4></td>";?>
+														</tr>
+														<tr>
+															<td class='p-0'><h4 class='mb-0'>價格 :</h4></td>
+	<?php 	echo"											<td class='p-0'><h4 class='mb-0 float-end'>$ave[1] $</h4></td>";?>
+														</tr>
+													</table>													
+												</div>		
+											</div>										
 										</div>
 									</div>
-								</div>
+								</form>								
 							</div>
 							<div class="col mb-4">
-								<div class="card shadow h-100 leader_card" data-bs-toggle="modal" data-bs-target="#modal_3rd">
-									<div class="card-header rounded-top leader_3rd">
-										<h3 class="mx-0 my-0">第三名</h3>
-									</div>
-<?php	echo"							<img src='http://140.128.102.212/p-img/".$picture[2].".png' class='my-3 shadow' alt='...''>";?>
-									<div class="card-body rounded-bottom leader_3rd">
-										<div class="card-text">
-											<div class="container px-0">												
-												<div class="row row-cols-2">
-													<div class="col">
-														<h4 class="mx-0 my-0">名稱 :</h4>
-													</div>
-													<div class="col">
-<?php	echo"											<h4 class='mx-0 my-0 float-end'>$name[2]</h4>";?>
-													</div>
-												</div>
-												<div class="row row-cols-2">
-													<div class="col">
-														<h4 class="mx-0 my-0">售價 :</h4>
-													</div>
-													<div class="col">
-<?php	echo"											<h4 class='mx-0 my-0 float-end'>$price[2]$</h4>";?>
-													</div>
-												</div>
-											</div>		
+								<form action="card-info.php" method="POST">
+									<div class="card shadow h-100 leader_card">
+										<div class="card-header rounded-top leader_3rd">
+											<h3 class="mx-0 my-0">第三名</h3>
 										</div>
-									</div>
-									<div class="modal fade" id="modal_3rd" tabindex="-1" aria-labelledby="modal_label_3rd" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="modal_label_3rd">卡牌資訊3</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													...
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												</div>
+	<?php	echo"							<input type='image' class='image shadow my-4' src='http://140.128.102.212/p-img/".$picture[2].".png'  alt='...''>";?>
+	<?php	echo"							<input type='hidden' name='card_id' value='".$number[2]."'>";?>	
+										<div class="card-body rounded-bottom leader_3rd">
+											<div class="card-text">
+												<div class="container px-0">												
+													<table class="table mb-0">
+														<tr>
+															<td class='p-0'><h4 class='mb-0'>名稱 :</h4></td>
+	<?php 	echo"											<td class='p-0'><h4 class='mb-0 float-end'>$name[2]</h4></td>";?>
+														</tr>
+														<tr>
+															<td class='p-0'><h4 class='mb-0'>價格 :</h4></td>
+	<?php 	echo"											<td class='p-0'><h4 class='mb-0 float-end'>$ave[2]  $</h4></td>";?>
+														</tr>
+													</table>
+												</div>		
 											</div>
-										</div>
+										</div>									
 									</div>
-								</div>
+								</form>
+								
 							</div>
 						</div>
 					</div>

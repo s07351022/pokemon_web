@@ -2,27 +2,11 @@
 	session_start();
 	header("Cache-Control:private");
 	$search_char = $_POST["search_char"];
-	if($search_char=="閃色明星"){
-		$search_char="s4a";
-	}
-	else if($search_char=="一擊大師" || $search_char=="一擊"){
-	    $search_char="s5i";
-	}
-	else if($search_char=="連擊大師" || $search_char=="連擊"){
-	    $search_char="s5r";
-	}
 
-    $sql = "SELECT 	*
-            FROM	card_info
-            WHERE	Name LIKE '%$search_char%' OR                
-                    Number LIKE '%$search_char%' OR
-                    Attribute LIKE '%$search_char%' OR
-                    Class LIKE '%$search_char%' OR
-                    Rarity = '$search_char';";
+	$series=$_POST["srch_series"];
+	$att=$_POST["srch_att"];	
+    $rare=$_POST["srch_rare"];		
 
-    require_once("dbtools.inc.php");
-    $link = create_connection();
-    $result = execute_sql($link,"pokemon_card",$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +21,7 @@
 
 	<title>Pokemon卡牌查價系統---搜尋結果</title>
 
-	<link rel="stylesheet" href="index1.css">
+	<link rel="stylesheet" href="index.css">
 
 	<style>
 		.card input[type="image"]{
@@ -88,10 +72,10 @@ echo"				</li>";
 				}
 ?>						
 				</ul>
-				<div class="me-3  mx-1 mx-sm-4 ms-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
+				<div class="mx-1 mx-sm-4 ms-xl-2  mb-2 mb-xl-0" style="--bs-breadcrumb-divider:'>';" aria-label="breadcrumb">
 					<ol class="breadcrumb my-auto px-2">
 						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
-<?php 	echo"			<li class='breadcrumb-item active' aria-current='page'>搜尋結果:$search_char</li>";?>
+<?php 	echo"			<li class='breadcrumb-item active' aria-current='page'>搜尋結果</li>";?>
 					</ol>
 				</div>
 				<form class="d-flex me-xl-4 mx-1 mx-sm-4" id="char-search-form" action="char-search.php" method="post">
@@ -108,29 +92,362 @@ echo"				</li>";
 					<div class="container-fluid">
 						<h1 class="mx-0 my-0 py-3 dialog_title">搜尋結果</h1>
 						<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
-<?php 						while($row = mysqli_fetch_array($result)){
-echo"							<form method='post' action='card-info.php'>";
-echo"								<div class='col mb-3'>";
-echo"									<div class='card char-search-card'>";
-echo"										<div class='card-header'>";
-echo"											<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
-echo"											<input type='hidden' name='card_id' value='".$row["Number"]."'>";
-echo"										</div>";
-echo"										<input type='hidden' name='search_char' value='".$search_char."'>";
-echo"										<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
-echo"										<div class='card-body py-2'>";
-echo"											<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
-echo"										</div>";
-										if($_SESSION['islogin']){
-echo"										<div class='card-footer py-2 pt-0'>";
-echo"											<input type='hidden' id='card_id' value='".$row["Number"]."'>";
-echo"											<a class='btn btn-add'>最愛</a>";
-echo"										</div>";
-										}
-echo"									</div>";
+<?php   
+	if($search_char!=NULL){
+		if($search_char=="閃色明星"){
+			$search_char="s4a";
+		}
+		else if($search_char=="一擊大師" || $search_char=="一擊"){
+		    $search_char="s5i";
+		}
+		else if($search_char=="連擊大師" || $search_char=="連擊"){
+		    $search_char="s5r";
+		}
+
+	    $sql = "SELECT 	*
+	            FROM	card_info
+	            WHERE	Name LIKE '%$search_char%' OR                
+	                    Number LIKE '%$search_char%' OR
+	                    Attribute LIKE '%$search_char%' OR
+	                    Class LIKE '%$search_char%' OR
+	                    Rarity = '$search_char';";
+
+	    require_once("dbtools.inc.php");
+    	$link = create_connection();
+    	$result = execute_sql($link,"pokemon_card",$sql);
+
+    	while($row = mysqli_fetch_array($result)){
+echo"					<form method='post' action='card-info.php'>";
+echo"						<div class='col mb-3'>";
+echo"							<div class='card char-search-card'>";
+echo"								<div class='card-header'>";
+echo"									<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"									<input type='hidden' name='card_id' value='".$row["Number"]."'>";
 echo"								</div>";
-echo"							</form>";
-							}
+echo"								<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"								<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"								<div class='card-body py-2'>";
+echo"									<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"								</div>";
+								if($_SESSION['islogin']){
+echo"								<div class='card-footer py-2 pt-0'>";
+echo"									<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"									<a class='btn btn-add'>最愛</a>";
+echo"								</div>";
+								}
+echo"							</div>";
+echo"						</div>";
+echo"					</form>";
+		}
+	}					
+	else if($series!=NULL && $att==NULL && $rare==NULL){/*只有選series*/
+		for($i=0;$i<sizeof($series);$i++){
+			if($series[$i]=='s4a'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%';";							
+	        }
+
+	        if($series[$i]=='s5i'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%';";								
+	        }
+
+	        if($series[$i]=='s5r'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%';";								
+	        }
+	        require_once("dbtools.inc.php");
+	    	$link = create_connection();
+	    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+			while($row = mysqli_fetch_array($result)){
+echo"						<form method='post' action='card-info.php'>";
+echo"							<div class='col mb-3'>";
+echo"								<div class='card char-search-card'>";
+echo"									<div class='card-header'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"									</div>";
+echo"									<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"									<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"									<div class='card-body py-2'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"									</div>";
+									if($_SESSION['islogin']){
+echo"									<div class='card-footer py-2 pt-0'>";
+echo"										<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"										<a class='btn btn-add'>最愛</a>";
+echo"									</div>";
+									}
+echo"								</div>";
+echo"							</div>";
+echo"						</form>";
+				}		    				
+			}			    
+		}
+	else if($series==NULL && $att!=NULL && $rare==NULL){/*只有選att*/
+		for($i=0;$i<sizeof($att);$i++){
+			$sql = "SELECT 	*
+	                FROM	card_info
+	                WHERE	Attribute = '$att[$i]';";
+
+			require_once("dbtools.inc.php");
+	    	$link = create_connection();
+	    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+			while($row = mysqli_fetch_array($result)){
+echo"					<form method='post' action='card-info.php'>";
+echo"						<div class='col mb-3'>";
+echo"							<div class='card char-search-card'>";
+echo"								<div class='card-header'>";
+echo"									<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"									<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"								</div>";
+echo"								<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"								<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"								<div class='card-body py-2'>";
+echo"									<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"								</div>";
+								if($_SESSION['islogin']){
+echo"								<div class='card-footer py-2 pt-0'>";
+echo"									<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"									<a class='btn btn-add'>最愛</a>";
+echo"								</div>";
+								}
+echo"							</div>";
+echo"						</div>";
+echo"					</form>";
+			}		    					                
+		}
+	}
+	else if($series==NULL && $att==NULL && $rare!=NULL){/*只有選rare*/
+		for($i=0;$i<sizeof($rare);$i++){
+			$sql = "SELECT 	*
+	                FROM	card_info
+	                WHERE	Rarity = '$rare[$i]';";
+
+			require_once("dbtools.inc.php");
+	    	$link = create_connection();
+	    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+			while($row = mysqli_fetch_array($result)){
+echo"					<form method='post' action='card-info.php'>";
+echo"						<div class='col mb-3'>";
+echo"							<div class='card char-search-card'>";
+echo"								<div class='card-header'>";
+echo"									<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"									<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"								</div>";
+echo"								<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"								<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"								<div class='card-body py-2'>";
+echo"									<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"								</div>";
+								if($_SESSION['islogin']){
+echo"								<div class='card-footer py-2 pt-0'>";
+echo"									<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"									<a class='btn btn-add'>最愛</a>";
+echo"								</div>";
+								}
+echo"							</div>";
+echo"						</div>";
+echo"					</form>";
+			}		    					                
+		}
+	}
+	else if($series!=NULL && $att!=NULL && $rare==NULL){/*選series att*/
+		for($i=0;$i<sizeof($series);$i++){
+			for($j=0;$j<sizeof($att);$j++){
+				if($series[$i]=='s4a'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%' AND Attribute = '$att[$j]';";							
+	        }
+
+	        if($series[$i]=='s5i'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%' AND Attribute = '$att[$j]';";								
+	        }
+
+	        if($series[$i]=='s5r'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%' AND Attribute = '$att[$j]';";								
+	        }
+	        require_once("dbtools.inc.php");
+	    	$link = create_connection();
+	    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+			while($row = mysqli_fetch_array($result)){
+echo"						<form method='post' action='card-info.php'>";
+echo"							<div class='col mb-3'>";
+echo"								<div class='card char-search-card'>";
+echo"									<div class='card-header'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"									</div>";
+echo"									<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"									<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"									<div class='card-body py-2'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"									</div>";
+									if($_SESSION['islogin']){
+echo"									<div class='card-footer py-2 pt-0'>";
+echo"										<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"										<a class='btn btn-add'>最愛</a>";
+echo"									</div>";
+									}
+echo"								</div>";
+echo"							</div>";
+echo"						</form>";
+						}		    				
+			}			
+		}		    
+	}
+	else if($series!=NULL && $att==NULL && $rare!=NULL){/*選series rare*/
+		for($i=0;$i<sizeof($series);$i++){
+			for($j=0;$j<sizeof($rare);$j++){
+				if($series[$i]=='s4a'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%' AND Rarity = '$rare[$j]';";							
+	        }
+
+	        if($series[$i]=='s5i'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%' AND Rarity = '$rare[$j]';";								
+	        }
+
+	        if($series[$i]=='s5r'){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Number LIKE '%$series[$i]%' AND Rarity = '$rare[$j]';";								
+	        }
+	        require_once("dbtools.inc.php");
+	    	$link = create_connection();
+	    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+			while($row = mysqli_fetch_array($result)){
+echo"						<form method='post' action='card-info.php'>";
+echo"							<div class='col mb-3'>";
+echo"								<div class='card char-search-card'>";
+echo"									<div class='card-header'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"									</div>";
+echo"									<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"									<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"									<div class='card-body py-2'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"									</div>";
+									if($_SESSION['islogin']){
+echo"									<div class='card-footer py-2 pt-0'>";
+echo"										<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"										<a class='btn btn-add'>最愛</a>";
+echo"									</div>";
+									}
+echo"								</div>";
+echo"							</div>";
+echo"						</form>";
+				}		    				
+			}			
+		}		    		
+	}
+	else if($series==NULL && $att!=NULL && $rare!=NULL){/*選att rare*/
+		for($i=0;$i<sizeof($att);$i++){
+			for($j=0;$j<sizeof($rare);$j++){
+	            $sql = "SELECT 	*
+	                    FROM	card_info
+	                    WHERE 	Attribute = '$att[$i]' AND Rarity = '$rare[$j]';";							
+	        
+	        require_once("dbtools.inc.php");
+	    	$link = create_connection();
+	    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+			while($row = mysqli_fetch_array($result)){
+echo"						<form method='post' action='card-info.php'>";
+echo"							<div class='col mb-3'>";
+echo"								<div class='card char-search-card'>";
+echo"									<div class='card-header'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"									</div>";
+echo"									<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"									<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"									<div class='card-body py-2'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"									</div>";
+									if($_SESSION['islogin']){
+echo"									<div class='card-footer py-2 pt-0'>";
+echo"										<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"										<a class='btn btn-add'>最愛</a>";
+echo"									</div>";
+									}
+echo"								</div>";
+echo"							</div>";
+echo"						</form>";
+				}		    				
+			}			
+		}		    		
+	}
+	else if($series!=NULL && $att!=NULL && $rare!=NULL){/*選series att rare*/
+		for($i=0;$i<sizeof($series);$i++){
+			for($j=0;$j<sizeof($att);$j++){
+				for($k=0;$k<sizeof($rare);$k++){
+					if($series[$i]=='s4a'){
+			            $sql = "SELECT 	*
+			                    FROM	card_info
+			                    WHERE 	Number LIKE '%$series[$i]%' AND Attribute = '$att[$j]' AND Rarity = '$rare[$k]';";
+			        }
+
+			        if($series[$i]=='s5i'){
+			            $sql = "SELECT 	*
+			                    FROM	card_info
+			                    WHERE 	Number LIKE '%$series[$i]%' AND Attribute = '$att[$j]' AND Rarity = '$rare[$k]';";
+			        }
+
+			        if($series[$i]=='s5r'){
+			            $sql = "SELECT 	*
+			                    FROM	card_info
+			                    WHERE 	Number LIKE '%$series[$i]%' AND Attribute = '$att[$j]' AND Rarity = '$rare[$k]';";
+			        }
+						        
+			        require_once("dbtools.inc.php");
+			    	$link = create_connection();
+			    	$result = execute_sql($link,"pokemon_card",$sql);		
+
+					while($row = mysqli_fetch_array($result)){
+echo"						<form method='post' action='card-info.php'>";
+echo"							<div class='col mb-3'>";
+echo"								<div class='card char-search-card'>";
+echo"									<div class='card-header'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Number"]."</h3>";
+echo"										<input type='hidden' name='card_id' value='".$row["Number"]."'>";
+echo"									</div>";
+echo"									<input type='hidden' name='search_char' value='".$search_char."'>";
+echo"									<input type='image' id='input-img' class='shadow my-3' src='http://140.128.102.212/p-img/".$row["Picture"].".png' alt=''>";
+echo"									<div class='card-body py-2'>";
+echo"										<h3 class='mx-0 my-0'>".$row["Name"]."</h3>";
+echo"									</div>";
+											if($_SESSION['islogin']){
+echo"									<div class='card-footer py-2 pt-0'>";
+echo"										<input type='hidden' id='card_id' value='".$row["Number"]."'>";
+echo"										<a class='btn btn-add'>最愛</a>";
+echo"									</div>";
+											}
+echo"								</div>";
+echo"							</div>";
+echo"						</form>";
+					}		    				
+				}           
+			}			
+		}		    				
+	}
 ?>									
 						</div>
 					</div>
@@ -143,31 +460,7 @@ echo"							</form>";
 	</button>
     <script>
     	$(function(){
-    		const window_height = $(document).height();
-    		const window_width = $(document).width();
-    		$("#scroll_1").click(function(){
-    			window.scrollTo(0,0);
-    		});
-    		$("#scroll_2").click(function(){
-    			if(window_width >= 1400){
-    				window.scrollTo(0,900);
-    			}
-    			else if((1200 <= window_width) && (window_width < 1400)){
-    				window.scrollTo(0,862);
-    			}
-    			else if((992 <= window_width) && (window_width < 1200)){
-    				window.scrollTo(0,824);
-    			}
-    			else if((768 <= window_width) && (window_width < 992)){
-    				window.scrollTo(0,1199);
-    			}
-    			else if((576 <= window_width) && (window_width < 768)){
-    				window.scrollTo(0,2685);
-    			}
-    			else if(window_width < 576){
-    				window.scrollTo(0,2550);
-    			}
-    		});
+ 
     		$(window).scroll(function(){
     			if($(document).scrollTop() > 50 || $(window).scrollTop() > 50){
     				$("#btn-back-to-top").css("display", "block");
