@@ -59,10 +59,10 @@
 echo"					<li class='breadcrumb-item'><a href='index.php'>主頁</a></li>";						
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
-echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果</a></li>";
+echo"					<li class='breadcrumb-item'><a href='javascript: history.back(1)'>搜尋結果</a></li>";
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/card-info.php"){
-echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>卡片資訊</a></li>";
+echo"					<li class='breadcrumb-item'><a href='javascript: history.back(1)'>卡片資訊</a></li>";
 					}
 ?>						
 						<li class='breadcrumb-item active' aria-current='page'>登入</li>

@@ -92,7 +92,8 @@ echo"				</li>";
 					<div class="container-fluid">
 						<h1 class="mx-0 my-0 py-3 dialog_title">搜尋結果</h1>
 						<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
-<?php   
+<?php  
+	$num = 0; 
 	if($search_char!=NULL){
 		if($search_char=="閃色明星"){
 			$search_char="s4a";
@@ -117,6 +118,7 @@ echo"				</li>";
     	$result = execute_sql($link,"pokemon_card",$sql);
 
     	while($row = mysqli_fetch_array($result)){
+    	$num++;
 echo"					<form method='post' action='card-info.php'>";
 echo"						<div class='col mb-3'>";
 echo"							<div class='card char-search-card'>";
@@ -164,6 +166,7 @@ echo"					</form>";
 	    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 			while($row = mysqli_fetch_array($result)){
+			$num++;
 echo"						<form method='post' action='card-info.php'>";
 echo"							<div class='col mb-3'>";
 echo"								<div class='card char-search-card'>";
@@ -199,6 +202,7 @@ echo"						</form>";
 	    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 			while($row = mysqli_fetch_array($result)){
+			$num++;
 echo"					<form method='post' action='card-info.php'>";
 echo"						<div class='col mb-3'>";
 echo"							<div class='card char-search-card'>";
@@ -234,6 +238,7 @@ echo"					</form>";
 	    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 			while($row = mysqli_fetch_array($result)){
+			$num++;
 echo"					<form method='post' action='card-info.php'>";
 echo"						<div class='col mb-3'>";
 echo"							<div class='card char-search-card'>";
@@ -283,6 +288,7 @@ echo"					</form>";
 	    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 			while($row = mysqli_fetch_array($result)){
+			$num++;
 echo"						<form method='post' action='card-info.php'>";
 echo"							<div class='col mb-3'>";
 echo"								<div class='card char-search-card'>";
@@ -333,6 +339,7 @@ echo"						</form>";
 	    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 			while($row = mysqli_fetch_array($result)){
+			$num++;
 echo"						<form method='post' action='card-info.php'>";
 echo"							<div class='col mb-3'>";
 echo"								<div class='card char-search-card'>";
@@ -370,6 +377,7 @@ echo"						</form>";
 	    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 			while($row = mysqli_fetch_array($result)){
+			$num++;
 echo"						<form method='post' action='card-info.php'>";
 echo"							<div class='col mb-3'>";
 echo"								<div class='card char-search-card'>";
@@ -422,6 +430,7 @@ echo"						</form>";
 			    	$result = execute_sql($link,"pokemon_card",$sql);		
 
 					while($row = mysqli_fetch_array($result)){
+					$num++;
 echo"						<form method='post' action='card-info.php'>";
 echo"							<div class='col mb-3'>";
 echo"								<div class='card char-search-card'>";
@@ -448,8 +457,14 @@ echo"						</form>";
 			}			
 		}		    				
 	}
+echo"					</div>";	
+if ($num==0){ 
+echo"		<div class='pb-3 text-center'>";
+echo"			<img class='w-50' src='img/search_not_found.png'>";
+echo"		</div>";    		
+    	}
 ?>									
-						</div>
+						
 					</div>
 				</div>
 			</div>

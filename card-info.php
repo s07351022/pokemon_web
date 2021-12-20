@@ -98,11 +98,11 @@ echo"					<li class='breadcrumb-item'><a href='favorite.php'>最愛清單</a></l
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";						
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
-echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>搜尋結果</a></li>";
+echo"					<li class='breadcrumb-item'><a href='javascript: history.back(1)'>搜尋結果</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
 					else if($url=="http://10.54.1.15/pokemon_web/index.php"){
-echo"					<li class='breadcrumb-item'><a href='#'' onclick='history.back();'>價格排行</a></li>";
+echo"					<li class='breadcrumb-item'><a href='javascript: history.back(1)'>價格排行</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
 ?>
@@ -128,23 +128,23 @@ echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 											<table class="table mb-2 mb-md-4 mb-lg-1 mb-xl-3 mb-xxl-4">
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>編號 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Number"]."</td>";?>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2 px-lg-0'>".$row["Number"]."</td>";?>
 												</tr>
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>種類 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Class"]."</td>";?>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2 px-lg-0'>".$row["Class"]."</td>";?>
 												</tr>
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>屬性 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Attribute"]."</td>";?>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2 px-lg-0'>".$row["Attribute"]."</td>";?>
 												</tr>
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>稀有度 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$row["Rarity"]."</td>";?>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2 px-lg-0'>".$row["Rarity"]."</td>";?>
 												</tr>
 												<tr>
 													<td class='p-2 py-lg-1 py-xl-2'>平均價格 :</td>
-<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2'>".$ave." $</td>";?>
+<?php 	echo"										<td class='p-2 py-lg-1 py-xl-2 px-lg-0'>".$ave." $</td>";?>
 												</tr>
 											</table>
 											<div class="row row-cols-1">
@@ -186,38 +186,14 @@ $row = mysqli_fetch_array($result);
 </div>
 <script>
 	$(function(){
-		$("#scroll_1").click(function(){
-			window.scrollTo(0,0);
-    		});
-    		$("#scroll_2").click(function(){
-    			const window_height = $(document).height();
-    			const window_width = $(document).width();
-    			if(window_width >= 1400){
-    				window.scrollTo(0,900);
-    			}
-    			else if((1200 <= window_width) && (window_width < 1400)){
-    				window.scrollTo(0,862);
-    			}
-    			else if((992 <= window_width) && (window_width < 1200)){
-    				window.scrollTo(0,824);
-    			}
-    			else if((768 <= window_width) && (window_width < 992)){
-    				window.scrollTo(0,1199);
-    			}
-    			else if((576 <= window_width) && (window_width < 768)){
-    				window.scrollTo(0,2685);
-    			}
-    			else if(window_width < 576){
-    				window.scrollTo(0,2550);
-    			}
-    		});
-
     		$(".log-out-btn").click(function(){
     			$.get('log-out.php',function(){  
     				location.reload(); 			
     				alert("已完成登出");
     			});
     		});
+
+
     	});		
     </script>
     <script>	
