@@ -15,7 +15,7 @@
 
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   		<symbol id="bootstrap" viewBox="0 0 118 94">
-    	<path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+    		<path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
   		</symbol>
   		<symbol id="facebook" viewBox="0 0 16 16">
     		<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -40,6 +40,16 @@
 	<style>
 		td,tr{
 			border: none !important;
+		}
+		footer{
+			background-color: #2E1D00;
+			color: #F1F1F1;
+		}
+		footer a{
+			color: #F1F1F1 !important;
+		}
+		footer a:hover{
+			color: #B4B4B4 !important;
 		}
 	</style>
 </head>
@@ -75,16 +85,16 @@ echo"				</li>";
 				}
 ?>							
 					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
-						<a class="nav-link px-2" href="#"><b>關於我們</b></a>
+						<a class="nav-link px-2" href="about_us.php"><b>關於我們</b></a>
 					</li>
 					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
-						<div class="nav-link px-2" id="scroll_1"><b>最新消息</b></div>
+						<div class="nav-link px-2" id="scroll_news"><b>最新消息</b></div>
 					</li>
 					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
-						<div class="nav-link px-2" id="scroll_2"><b>快速查詢</b></div>
+						<div class="nav-link px-2" id="scroll_quick_search"><b>快速查詢</b></div>
 					</li>
 					<li class="nav-item mx-xl-1 mb-1 mb-xl-0">
-						<div class="nav-link px-2" id="scroll_3"><b>價格排行</b></div>
+						<div class="nav-link px-2" id="scroll_leader_board"><b>價格排行</b></div>
 					</li>
 					<li class="nav-item dropdown mx-xl-1 mb-1 mb-xl-0">
 						<a class="nav-link dropdown-toggle px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -466,7 +476,7 @@ echo"				</li>";
    				<div class="col px-2 px-sm-5 mb-3 mb-lg-0">
       			<h5 class="px-3 px-sm-0">快速連結</h5>
       				<ul class="list-unstyled px-3 px-sm-0">
-        				<li class="mb-2"><a href="#" class="btn p-0">關於我們</a></li>
+        				<li class="mb-2"><a href="about_us.php" class="btn p-0">關於我們</a></li>
         				<li class="mb-2"><a href="#" class="btn p-0">最新消息</a></li>
         				<li class="mb-2"><a href="#" class="btn p-0">快速查詢</a></li>
         				<li class="mb-2"><a href="#" class="btn p-0">價格排行</a></li>
@@ -475,7 +485,7 @@ echo"				</li>";
        			<div class="col px-2 px-sm-5 mb-3 mb-lg-0">
       			<h5>聯繫我們</h5>
       				<ul class="list-unstyled">
-        				<li class="mb-2"><a href="http://www.cs.thu.edu.tw/" class="btn p-0">東海大學資工系</a></li>
+        				<li class="mb-2"><a href="http://www.cs.thu.edu.tw/" class="btn p-0" target="_blank">東海大學資工系</a></li>
       				</ul>
    	 			</div>
 			</div>
@@ -483,50 +493,17 @@ echo"				</li>";
 	</footer>
     <script>
     	$(function(){
-    		const window_height = $(document).height();
-    		const window_width = $(document).width();	
-    		$("#scroll_1").click(function(){
-    			window.scrollTo(0,0);
+    		$("#scroll_news").click(function(){
+    			var news = $(".news").offset().top;			
+    			window.scrollTo(0,news-125);
     		});
-    		$("#scroll_2").click(function(){
-    			if(window_width >= 1400){
-    				window.scrollTo(0,900);
-    			}
-    			else if((1200 <= window_width) && (window_width < 1400)){
-    				window.scrollTo(0,862);
-    			}
-    			else if((992 <= window_width) && (window_width < 1200)){
-    				window.scrollTo(0,824);
-    			}
-    			else if((768 <= window_width) && (window_width < 992)){
-    				window.scrollTo(0,1199);
-    			}
-    			else if((576 <= window_width) && (window_width < 768)){
-    				window.scrollTo(0,2930);
-    			}
-    			else if(window_width < 576){
-    				window.scrollTo(0,2550);
-    			}
+    		$("#scroll_quick_search").click(function(){
+				var quick_search = $(".quick_search").offset().top;
+    			window.scrollTo(0,quick_search-125);
     		});
-    		$("#scroll_3").click(function(){
-    			if(window_width >= 1400){
-    				window.scrollTo(0,9999);
-    			}
-    			else if((1200 <= window_width) && (window_width < 1400)){
-    				window.scrollTo(0,9999);
-    			}
-    			else if((992 <= window_width) && (window_width < 1200)){
-    				window.scrollTo(0,9999);
-    			}
-    			else if((768 <= window_width) && (window_width < 992)){
-    				window.scrollTo(0,9999);
-    			}
-    			else if((576 <= window_width) && (window_width < 768)){
-    				window.scrollTo(0,3627);
-    			}
-    			else if(window_width < 576){
-    				window.scrollTo(0,3382);
-    			}
+    		$("#scroll_leader_board").click(function(){   			   			
+				var leader_board = $(".leaderboard").offset().top;
+				window.scrollTo(0,leader_board-125);
     		});
 
     		$(".news_btn").click(function(){//已經按news_btn

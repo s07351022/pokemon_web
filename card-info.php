@@ -93,15 +93,15 @@ echo"				</li>";
 						<li class="breadcrumb-item"><a href="index.php">主頁</a></li>
 <?php
 					$url = $_SERVER["HTTP_REFERER"];
-					if($url=="http://10.54.1.15/pokemon_web/favorite.php"){
+					if($url=="http://140.128.102.212/p-final/favorite.php"){
 echo"					<li class='breadcrumb-item'><a href='favorite.php'>最愛清單</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";						
 					}
-					else if($url=="http://10.54.1.15/pokemon_web/char-search.php"){
+					else if($url=="http://140.128.102.212/p-final/char-search.php"){
 echo"					<li class='breadcrumb-item'><a href='javascript: history.back(1)'>搜尋結果</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
-					else if($url=="http://10.54.1.15/pokemon_web/index.php"){
+					else if($url=="http://140.128.102.212/p-final/index.php"){
 echo"					<li class='breadcrumb-item'><a href='javascript: history.back(1)'>價格排行</a></li>";
 echo"					<li class='breadcrumb-item active' aria-current='page'>$id</li>";
 					}
